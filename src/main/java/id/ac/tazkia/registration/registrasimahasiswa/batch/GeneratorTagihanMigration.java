@@ -27,7 +27,7 @@ public class GeneratorTagihanMigration implements CommandLineRunner{
                 return;
             }
             Tagihan t = tagihanService.createTagihanPendaftaran(pendaftar);
-            LOGGER.info("Tagihan dibuat dengan nomer {} dan nilai {}", t.getNomorTagihan(), t.getNilai());
+            LOGGER.info("TagihanDto dibuat dengan nomer {} dan nilai {}", t.getNomorTagihan(), t.getNilai());
         });
     }
 }

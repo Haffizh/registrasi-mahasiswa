@@ -4,12 +4,12 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Form Input Grade</title>
+    <title>Form Input Tagihan</title>
 </head>
 <body>
 <section layout:fragment="content" class="clearfix">
     <section class="clearfix">
-        <form method="post">
+        <form >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -21,34 +21,37 @@
                                 </h1>
                             </div>
 
-                            <div class="body">
+                            <div class="body" >
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label>No Pendaftar</label>
-                                                <input type="text" name="noPendaftar"
-                                                       class="form-control" required  placeholder="Nomor Pendaftar" disabled readonly/>
+                                                <span name="noPendaftar" th:text="${pendaftar.nomorRegistrasi}"
+                                                      class="form-control" id="noPendaftar"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <label>Nama</label>
-                                                <input type="text" name="nama" class="form-control" placeholder="Nama" disabled  required readonly />
+                                                <label>Nama</label><br>
+                                                <span name="nama" th:text="${pendaftar.nama}"
+                                                      class="form-control" ></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                              <form th:action="@{/biaya/tagihan/form}" th:object="${tagihan}" method="post">
+                                  <input type="text" th:field="${pendaftar.id}" hidden>
+                                  <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label>Jenis Biaya</label>
-                                                <select name="jenisBiaya" class="form-control" id="pemberi_rekomendasi"required>
+                                                <select name="jenisBiaya" class="form-control" id="pemberi_rekomendasi" required>
                                                     <option>-Pilih Jenis Biaya-</option>
-                                                    <option value="registrasi">Registrasi</option>
-                                                    <option value="daftarUlang">Daftar Ulang</option>
-                                                    <option value="ukt2Tahun">UKT 2 Tahun</option>
+                                                    <option th:each = "jb : ${daftarjenisBiaya}"
+                                                            th:value="${jb.id}"
+                                                            th:text="${jb.nama}">Tanpa Institusi</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -57,14 +60,14 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <label>Nilai</label>
-                                                <input type="text" name="nilai" placeholder="Nilai" class="form-control" required />
+                                                <input type="text" name="nilai" placeholder="Nilai" class="form-control" required/>
                                             </div>
                                         </div>
                                     </div><div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <label>Rekening</label>
-                                                <input type="text" name="rekening" placeholder="Rekening" class="form-control" required />
+                                                <label>Keterangan</label>
+                                                <input type="text" name="keterangan" placeholder="Keterangan" class="form-control" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -76,8 +79,8 @@
                                             </div>
                                         </div>
                                     </div>
+                              </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
